@@ -22923,7 +22923,7 @@ class MainView extends _reactDefault.default.Component {
     }
     setSelectedMovie(newSelectedMovie) {
         this.setState({
-            selectedMovie: Movie
+            selectedMovie: newSelectedMovie
         });
     }
     onLoggedIn(user) {
