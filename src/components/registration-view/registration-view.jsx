@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Card, Form, Button, Container, Col, Row } from "react-bootstrap";
 import "./registration-view.scss";
+import axios from "axios";
 
 export function RegistrationView(props) {
   const [Username, setUsername] = useState("");
@@ -11,8 +12,21 @@ export function RegistrationView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Username, Password, Email, Birthday);
-    props.onRegistration(Username);
+    axios
+      .post(`https://movie-api-by-tammy.herokuapp.com/users`, {
+        Username: Username,
+        Password: Password,
+        Email: Email,
+        Birthday: Birthday,
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        window.open("/", "_self");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
@@ -20,13 +34,15 @@ export function RegistrationView(props) {
       <Row>
         <Col></Col>
         <Col>
-          <Card className="registrationCard" bg="dark">
+          <Card className="registrationCard">
+            <p style={{ color: "grey" }}>Create New Account</p>
             <Form className="register-card">
               <Form.Group controlId="formRegisterUsername">
                 <Form.Label style={{ color: "white" }}>Username:</Form.Label>
                 <Form.Control
                   type="text"
                   value={Username}
+                  placeholder="Username must contains more than 5 letters"
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </Form.Group>
@@ -58,7 +74,7 @@ export function RegistrationView(props) {
                 />
               </Form.Group>
               <br />
-              <Button variant="warning" type="submit" onClick={handleSubmit}>
+              <Button variant="danger" type="submit" onClick={handleSubmit}>
                 Register
               </Button>
             </Form>
