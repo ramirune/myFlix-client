@@ -9,6 +9,7 @@
 .poster {
   text-align: center;
   padding: 10px;
+  background-color: black !important;
 }
 
 .movie_title {
@@ -19,6 +20,10 @@
   padding: 10px;
 }
 
-.button {
+/* .button {
   background-color: #fdc689 !important;
+} */
+
+.mvcard {
+  margin-top: 50px;
 }
