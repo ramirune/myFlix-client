@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./movie-view.scss";
 import { Row, Container, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 export class MovieView extends React.Component {
   keypressCallback(event) {
@@ -26,17 +27,21 @@ export class MovieView extends React.Component {
             <div className="movie-view">
               <div
                 className="movie-poster"
-                style={{ textAlign: "center", marginBottom: "10px" }}
+                style={{ textAlign: "center", marginBottom: "30px" }}
               >
                 <img src={movie.ImagePath} crossOrigin="true" width="300" />
               </div>
               <div className="movie-title">
                 <span className="label">Title: </span>
-                <span className="value">{movie.Title}</span>
+                <span className="value" id="title">
+                  {movie.Title}
+                </span>
               </div>
               <div className="movie-director">
                 <span className="label">Director: </span>
-                <span className="value">{movie.Director.Name}</span>
+                <Link to={`/directors/${movie.Director}`}>
+                  <span className="value">{movie.Director.Name}</span>
+                </Link>
               </div>
               <div className="movie-description">
                 <span className="label">Description: </span>
@@ -44,12 +49,15 @@ export class MovieView extends React.Component {
               </div>
               <div className="movie-genre">
                 <span className="label">Genre: </span>
-                <span className="value">{movie.Genre.Name}</span>
+                <Link to={"/genres/${movie.Genre.Name}"}>
+                  <span className="value">{movie.Genre.Name}</span>
+                </Link>
               </div>
+
               <div className="alignCenter">
                 <Button
                   size="lg"
-                  variant="warning"
+                  variant="danger"
                   onClick={() => {
                     onBackClick(null);
                   }}
