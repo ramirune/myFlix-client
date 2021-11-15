@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Card, Button, Form, Row, Col, Container } from "react-bootstrap";
 import "./login-view.scss";
+import axios from "axios";
 
 export function LoginView(props) {
   const [Username, setUsername] = useState("");
@@ -9,18 +10,27 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Username, Password);
     /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    props.onLoggedIn(Username);
+    axios
+      .post(`https://movie-api-by-tammy.herokuapp.com/login`, {
+        Username: Username,
+        Password: Password,
+      })
+      .then((response) => {
+        const data = response.data;
+        props.onLoggedIn(data);
+      })
+      .catch((e) => {
+        console.log("no such user");
+      });
   };
 
   return (
-    <Container>
+    <Container className="login-container">
       <Row>
         <Col></Col>
         <Col>
-          <Card className="loginCard" bg="dark">
+          <Card className="loginCard">
             <Form>
               <Form.Group controlId="formUsername">
                 <Form.Label style={{ color: "white" }}>Username:</Form.Label>
@@ -38,7 +48,7 @@ export function LoginView(props) {
                 />
               </Form.Group>
               <br />
-              <Button variant="warning" type="submit" onClick={handleSubmit}>
+              <Button variant="danger" type="submit" onClick={handleSubmit}>
                 Log In
               </Button>
             </Form>
