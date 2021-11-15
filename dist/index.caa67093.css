@@ -12,6 +12,7 @@
 .poster {
   text-align: center;
   padding: 10px;
+  background-color: black !important;
 }
 
 .movie_title {
@@ -22,11 +23,15 @@
   padding: 10px;
 }
 
-.button {
+/* .button {
   background-color: #fdc689 !important;
+} */
+.mvcard {
+  margin-top: 50px;
 }
 .movie-view {
-  margin-top: 30px;
+  margin-top: 100px;
+  margin-bottom: 50px;
 }
 
 .alignCenter {
@@ -36,15 +41,50 @@
 .label {
   font-weight: bold;
 }
+
+#title {
+  font-size: 30px;
+  font-weight: bold;
+}
+.login-container {
+  margin-top: 100px;
+}
+
 .loginCard {
+  background-color: black !important;
   width: 600px;
   padding: 20px;
   margin-top: 50px;
   margin-bottom: 50px;
 }
 .registrationCard {
+  background-color: black !important;
   width: 600px;
   padding: 20px;
+  margin-bottom: 50px;
+}
+.body {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.navbar {
+  width: 100%;
+  margin-bottom: 50px;
+  background-color: black;
 }
 
+.navbar-menu {
+  padding-top: 15px;
+}
+.bt {
+  margin-top: 20px;
+}
+
+.delete-button {
+  margin-left: 50px;
+}
+
+.profile-view {
+  margin-top: 100px;
+}
 /*# sourceMappingURL=index.caa67093.css.map */
