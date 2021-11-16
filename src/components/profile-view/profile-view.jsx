@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 
-import { MovieCard } from "../movie-card/movie-card";
 import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+
 import "./profile-view.scss";
 
 export class ProfileView extends React.Component {
@@ -21,26 +21,21 @@ export class ProfileView extends React.Component {
   }
 
   componentDidMount() {
-    const accessToken = localStorage.getItem('token');
-    if (accessToken !== null) {
-      this.setState({
-        user: localStorage.getItem('user'),
-      });
-    }
+    const accessToken = localStorage.getItem("token");
     this.getUser(accessToken);
   }
 
   onLoggedOut() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     this.setState({
       user: null,
     });
-    window.open('/', '_self');
+    window.open("/", "_self");
   }
 
   getUser(token) {
-    const Username = localStorage.getItem('user');
+    const Username = localStorage.getItem("user");
     axios
       .get(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
         header: { Authorization: `Bearer ${token}` },
@@ -61,22 +56,19 @@ export class ProfileView extends React.Component {
   // Allow user to edit or update profile
   editUser(e) {
     e.preventDefault();
-    const Username = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
+    const Username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
     axios
-      .put(
-        `https://movie-api-by-tammy.herokuapp.com/users/${Username}`,
-        {
+      .put(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        data: {
           Username: this.state.Username,
           Password: this.state.Password,
           Email: this.state.Email,
           Birthday: this.state.Birthday,
         },
-        {
-          header: { Authorization: `Bearer ${token}` },
-        }
-      )
+      })
       .then((response) => {
         this.setState({
           Username: response.data.Username,
@@ -84,13 +76,12 @@ export class ProfileView extends React.Component {
           Email: response.data.Email,
           Birthday: response.data.Birthday,
         });
-        localStorage.setItem('user', this.state.Username);
-
+        localStorage.setItem("user", this.state.Username);
         const data = response.data;
-
         console.log(data);
         console.log(this.state.Username);
-        alert('Profile Updated!');
+        alert("Profile is updated!");
+        window.open(`/users/${Username}`, "_self");
       })
       .catch(function (error) {
         console.log(error);
@@ -99,8 +90,8 @@ export class ProfileView extends React.Component {
 
   // Delete a movie from FavoriteMovies list
   onRemoveFavorite() {
-    const Username = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
+    const Username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
     axios
       .delete(
@@ -120,8 +111,8 @@ export class ProfileView extends React.Component {
 
   // Deregister
   onDeleteUser() {
-    const Username = localStorage.getItem('user');
-    const token = localStorage.getItem('token');
+    const Username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
 
     axios
       .delete(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
@@ -129,10 +120,10 @@ export class ProfileView extends React.Component {
       })
       .then((response) => {
         console.log(response);
-        alert('Profile has been deleted.');
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        window.open('/', '_self');
+        alert("Profile has been deleted.");
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        window.open(`/`, "_self");
       })
       .catch(function (error) {
         console.log(error);
@@ -140,43 +131,41 @@ export class ProfileView extends React.Component {
   }
 
   setUsername(value) {
-    this.state.Username = value;
+    this.Username = value;
   }
 
   setPassword(value) {
-    this.state.Password = value;
+    this.Password = value;
   }
 
   setEmail(value) {
-    this.State.Email = value;
+    this.Email = value;
   }
 
   setBirthday(value) {
-    this.state.Birthday = value;
+    this.Birthday = value;
   }
 
   render() {
-    const { movies, user, onBackClick } = this.props;
-    const FavoriteMovies = movies.filter((m) => {
-      return this.state.FavoriteMovies.includes(m._id);
-    });
+    const { movies } = this.props;
+    const { FavoriteMovies, Username, Email, Birthday } = this.state;
 
     return (
       <Container className="profile-view">
         <Row>
           <Col>
-            <Card>
+            <Card className="user-profile">
               <Card.Title>User Profile</Card.Title>
               <Card.Text>
                 <div className="profile-container">
                   <span className="label">Username: </span>
-                  <span className="value">{this.state.Username}</span>
+                  <span className="value">{Username}</span>
                   <br />
                   <span className="label">Email: </span>
-                  <span className="value">{this.state.Email}</span>
+                  <span className="value">{Email}</span>
                   <br />
                   <span className="label">Birthday: </span>
-                  <span className="value">{this.state.Birthday}</span>
+                  <span className="value">{Birthday}</span>
                 </div>
               </Card.Text>
             </Card>
@@ -190,7 +179,15 @@ export class ProfileView extends React.Component {
                 <Card.Title>Update Profile</Card.Title>
                 <Form
                   className="update-form"
-                  onSubmit={(e) => this.editUser(e)}
+                  onSubmit={(e) =>
+                    this.editUser(
+                      e,
+                      this.Username,
+                      this.Password,
+                      this.Email,
+                      this.Birthday
+                    )
+                  }
                 >
                   <Form.Group>
                     <Form.Label>Username</Form.Label>
@@ -234,7 +231,11 @@ export class ProfileView extends React.Component {
                     />
                   </Form.Group>
                   <div className="bt">
-                    <Button variant="warning" type="submit">
+                    <Button
+                      variant="warning"
+                      type="submit"
+                      onClick={this.editUser}
+                    >
                       Update User
                     </Button>
                     <Button
@@ -251,25 +252,57 @@ export class ProfileView extends React.Component {
           </Col>
         </Row>
 
-        <div className="faverite-container">
-          <p>{this.state.Username} Favorite Movies</p>
-          <Row>
-            {FavoriteMovies.map((movie) => (
-              <Col md={4} key={movie._id}>
-                <MovieCard movie={movie} />
-                <Button
-                  className="remove-fav"
-                  variant="dark"
-                  onClick={() => {
-                    this.onRemoveFavorite(movie._id);
-                  }}
-                >
-                  Remove Favorite
-                </Button>
-              </Col>
-            ))}
+        <Card>
+          <Row style={{ marginTop: "20px" }}>
+            <Col>
+              <h4>{Username} Favorite Movies</h4>
+            </Col>
           </Row>
-        </div>
+          <Row>
+            <Col>
+              <Card.Body>
+                {FavoriteMovies.length === 0 && (
+                  <div className="text-center">No Favorite Movie</div>
+                )}
+                <Row className="favorite-container">
+                  {FavoriteMovies.length > 0 &&
+                    movies.map((movie) => {
+                      if (
+                        movie._id ===
+                        FavoriteMovies.find((fav) => fav === movie._id)
+                      ) {
+                        return (
+                          <Card
+                            className="favorite-movie card-content"
+                            key={movie._id}
+                          >
+                            <Card.Img
+                              className="poster"
+                              variant="top"
+                              src={movie.ImagePath}
+                            />
+                            <Card.Body style={{ backgroundColor: "black" }}>
+                              <Card.Title className="movie_title">
+                                {movie.Title}
+                              </Card.Title>
+                              <Button
+                                size="sm"
+                                variant="danger"
+                                value={movie._id}
+                                onClick={(e) => this.onRemoveFavorite(e, movie)}
+                              >
+                                Remove
+                              </Button>
+                            </Card.Body>
+                          </Card>
+                        );
+                      }
+                    })}
+                </Row>
+              </Card.Body>
+            </Col>
+          </Row>
+        </Card>
       </Container>
     );
   }
