@@ -36,13 +36,13 @@ export function RegistrationView(props) {
         <Col>
           <Card className="registrationCard">
             <p style={{ color: "grey" }}>Create New Account</p>
-            <Form className="register-card">
+
+            <Form className="register-card" onSubmit={this.handleSubmit}>
               <Form.Group controlId="formRegisterUsername">
                 <Form.Label style={{ color: "white" }}>Username:</Form.Label>
                 <Form.Control
                   type="text"
                   value={Username}
-                  placeholder="Username must contains more than 5 letters"
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </Form.Group>
@@ -93,4 +93,5 @@ RegistrationView.propTypes = {
     Email: PropTypes.string.isRequired,
     Birthday: PropTypes.string,
   }),
+  onRegistration: PropTypes.func.isRequired,
 };
