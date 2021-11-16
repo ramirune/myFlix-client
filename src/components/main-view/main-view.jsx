@@ -6,17 +6,12 @@ import { RegistrationView } from "../registration-view/registration-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { NavBarView } from "../navbar-view/navbar-view";
-//import { GenreView } from "../genre-view/genre-view";
-//import { DirectorView } from "../director-view/director-view";
+import { GenreView } from "../genre-view/genre-view";
+import { DirectorView } from "../director-view/director-view";
 import { ProfileView } from "../profile-view/profile-view";
 
 import { Container, Col, Row } from "react-bootstrap";
-import {
-  BrowserRouter as Router,
-  Route,
-  Redirect,
-  Switch,
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import "./main-view.scss";
 
 export class MainView extends React.Component {
@@ -24,9 +19,28 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      selectedMovie: null,
+      //selectedMovie: null,
       user: null,
+      Username: "",
+      Password: "",
+      Email: "",
+      Birthday: "",
     };
+  }
+
+  getUser(token) {
+    axios
+      .get(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        this.setState({
+          user: response.data,
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   getMovies(token) {
@@ -152,10 +166,47 @@ export class MainView extends React.Component {
                   if (movies.length === 0) return <div className="main-view" />;
                   return (
                     <ProfileView
+                      history={history}
                       movies={movies}
                       user={user}
                       onBackClick={() => history.goBack()}
                     />
+                  );
+                }}
+              />
+              <Route
+                path="/directors/:Name"
+                render={({ match, history }) => {
+                  if (!user)
+                    return (
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    );
+                  if (movies.length === 0) return <div className="main-view" />;
+                  return (
+                    <Col md={8}>
+                      <DirectorView
+                        Director={movies.find((m) => m.Director.Name).Director}
+                        onBackClick={() => history.goBack()}
+                      />
+                    </Col>
+                  );
+                }}
+              />
+              <Route
+                path="/genres/:Name"
+                render={({ match, history }) => {
+                  if (!user)
+                    return (
+                      <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    );
+                  if (movies.length === 0) return <div className="main-view" />;
+                  return (
+                    <Col md={8}>
+                      <GenreView
+                        Genre={movies.find((m) => m.Genre.Name).Genre}
+                        onBackClick={() => history.goBack()}
+                      />
+                    </Col>
                   );
                 }}
               />
