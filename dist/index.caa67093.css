@@ -63,10 +63,6 @@
   padding: 20px;
   margin-bottom: 50px;
 }
-.body {
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
 .navbar {
   width: 100%;
   margin-bottom: 50px;
@@ -75,6 +71,17 @@
 
 .navbar-menu {
   padding-top: 15px;
+}
+.genre-container {
+  margin-top: 100px;
+}
+.backButton {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.director-container {
+  margin-top: 100px !important;
 }
 .bt {
   margin-top: 20px;
@@ -124,15 +131,8 @@ h4 {
 .favorite-container {
   justify-content: center;
 }
-.backButton {
-  text-align: center;
-  margin-top: 20px;
-}
-
-.director-container {
-  margin-top: 100px !important;
-}
-.genre-container {
-  margin-top: 100px;
+.body {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 /*# sourceMappingURL=index.caa67093.css.map */
