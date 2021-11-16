@@ -40388,14 +40388,14 @@ function NavBarView() {
         fixed: "top",
         __source: {
             fileName: "src/components/navbar-view/navbar-view.jsx",
-            lineNumber: 18
+            lineNumber: 17
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
             fluid: true,
             __source: {
                 fileName: "src/components/navbar-view/navbar-view.jsx",
-                lineNumber: 19
+                lineNumber: 18
             },
             __self: this,
             children: [
@@ -40403,7 +40403,7 @@ function NavBarView() {
                     href: "/",
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                        lineNumber: 20
+                        lineNumber: 19
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx("img", {
@@ -40411,7 +40411,7 @@ function NavBarView() {
                         width: "200",
                         __source: {
                             fileName: "src/components/navbar-view/navbar-view.jsx",
-                            lineNumber: 21
+                            lineNumber: 20
                         },
                         __self: this
                     })
@@ -40420,14 +40420,14 @@ function NavBarView() {
                     "aria-controls": "basic-navbar-nav",
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                        lineNumber: 23
+                        lineNumber: 22
                     },
                     __self: this
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Navbar.Collapse, {
                     __source: {
                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                        lineNumber: 24
+                        lineNumber: 23
                     },
                     __self: this,
                     children: [
@@ -40435,7 +40435,7 @@ function NavBarView() {
                             className: "me-auto navbar-menu",
                             __source: {
                                 fileName: "src/components/navbar-view/navbar-view.jsx",
-                                lineNumber: 25
+                                lineNumber: 24
                             },
                             __self: this,
                             children: [
@@ -40443,7 +40443,7 @@ function NavBarView() {
                                     to: `/user/${Username}`,
                                     __source: {
                                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                                        lineNumber: 26
+                                        lineNumber: 25
                                     },
                                     __self: this,
                                     children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.NavItem, {
@@ -40453,7 +40453,7 @@ function NavBarView() {
                                         href: "",
                                         __source: {
                                             fileName: "src/components/navbar-view/navbar-view.jsx",
-                                            lineNumber: 27
+                                            lineNumber: 26
                                         },
                                         __self: this,
                                         children: "User Profile"
@@ -40466,13 +40466,13 @@ function NavBarView() {
                                     },
                                     __source: {
                                         fileName: "src/components/navbar-view/navbar-view.jsx",
-                                        lineNumber: 31
+                                        lineNumber: 30
                                     },
                                     __self: this,
                                     children: /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                                         __source: {
                                             fileName: "src/components/navbar-view/navbar-view.jsx",
-                                            lineNumber: 32
+                                            lineNumber: 31
                                         },
                                         __self: this,
                                         children: [
@@ -40488,7 +40488,7 @@ function NavBarView() {
                             className: "d-flex",
                             __source: {
                                 fileName: "src/components/navbar-view/navbar-view.jsx",
-                                lineNumber: 36
+                                lineNumber: 35
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
@@ -40498,7 +40498,7 @@ function NavBarView() {
                                 },
                                 __source: {
                                     fileName: "src/components/navbar-view/navbar-view.jsx",
-                                    lineNumber: 37
+                                    lineNumber: 36
                                 },
                                 __self: this,
                                 children: "Logout"
