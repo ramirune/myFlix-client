@@ -1,54 +1,47 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Card, Button } from "react-bootstrap";
 
 import "./genre-view.scss";
+import axios from "axios";
 
 export class GenreView extends React.Component {
   render() {
-    const { genre, onBackClick } = this.props;
+    const { Genre, onBackClick } = this.props;
 
     return (
-      <Container className="genreContainer">
-        <Row>
-          <Col>
-            <div className="genre-view">
-              <div className="genre-name">
-                <span className="name">Name:</span>
-                <span className="value">{genre.Name}</span>
-              </div>
-
-              <div className="genre-description">
-                <span className="description">Description:</span>
-                <span className="value">{genre.Description}</span>
-              </div>
-
-              <div className="genre-button-div">
-                <Button
-                  className="genre-button"
-                  variant="secondary"
-                  className="mt-3"
-                  onClick={() => {
-                    onBackClick(null);
-                  }}
-                >
-                  Back
-                </Button>
-              </div>
+      <Container className="genre-container">
+        <Card>
+          <Card.Header>
+            <h4>{Genre.Name}</h4>
+          </Card.Header>
+          <Card.Body>
+            <div>
+              <span className="label">Description: </span>
+              <span className="value">{Genre.Description}</span>
             </div>
-          </Col>
-        </Row>
+
+            <div className="backButton">
+              <Button
+                size="md"
+                variant="warning"
+                onClick={() => {
+                  onBackClick(null);
+                }}
+              >
+                Back
+              </Button>
+            </div>
+          </Card.Body>
+        </Card>
       </Container>
     );
   }
 }
 
 GenreView.propTypes = {
-  movie: PropTypes.shape({
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired,
-    }).isRequired,
-  }),
+  Genre: PropTypes.shape({
+    Name: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+  }).isRequired,
 };
