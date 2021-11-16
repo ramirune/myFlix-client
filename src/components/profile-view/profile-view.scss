@@ -8,3 +8,39 @@
 .profile-view {
   margin-top: 100px;
 }
+
+.favorite-movie {
+  width: 250px;
+  background-color: black;
+  margin: 20px;
+  text-align: center;
+}
+.poster {
+  text-align: center;
+  padding: 10px;
+  background-color: black !important;
+}
+
+.movie_title {
+  height: 60px;
+  text-align: center;
+  background-color: #c48f7f;
+  color: white !important;
+  padding: 10px;
+}
+
+.user-profile {
+  margin-bottom: 30px;
+}
+
+.update-profile {
+  margin-bottom: 30px;
+}
+
+h4 {
+  text-align: center;
+}
+
+.favorite-container {
+  justify-content: center;
+}
