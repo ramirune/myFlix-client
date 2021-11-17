@@ -3,18 +3,28 @@ import PropTypes from "prop-types";
 import "./movie-view.scss";
 import { Row, Container, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export class MovieView extends React.Component {
-  keypressCallback(event) {
-    console.log(event.key);
-  }
+  addToFavs() {
+    const Username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    const movie = this.props;
 
-  componentDidMount() {
-    document.addEventListener("keypress", this.keypressCallback);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("keypress", this.keypressCallback);
+    axios
+      .post(
+        `https://movie-api-by-tammy.herokuapp.com/users/${Username}/movies/${movie.MovieID}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        this.componentDidMount();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
@@ -56,6 +66,16 @@ export class MovieView extends React.Component {
 
               <div className="alignCenter">
                 <Button
+                  size="lg"
+                  variant="warning"
+                  onClick={() => {
+                    this.addToFavs();
+                  }}
+                >
+                  Add Favorite
+                </Button>
+                <Button
+                  className="back-button"
                   size="lg"
                   variant="danger"
                   onClick={() => {
