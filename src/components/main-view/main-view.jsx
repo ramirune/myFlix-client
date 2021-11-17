@@ -19,16 +19,14 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      //selectedMovie: null,
+      selectedMovie: null,
       user: null,
-      Username: "",
-      Password: "",
-      Email: "",
-      Birthday: "",
+      Description: null,
+      Movies: null,
     };
   }
 
-  getUser(token) {
+  /*  getUser(token) {
     axios
       .get(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -41,7 +39,7 @@ export class MainView extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
+  } */
 
   getMovies(token) {
     axios
