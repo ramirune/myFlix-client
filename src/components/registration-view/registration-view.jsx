@@ -22,6 +22,7 @@ export function RegistrationView(props) {
       .then((response) => {
         const data = response.data;
         console.log(data);
+        alert("Registration Success!");
         window.open("/", "_self");
       })
       .catch(function (error) {
