@@ -1,13 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card, Button, Row, Col } from "react-bootstrap";
 
 import "./genre-view.scss";
-import axios from "axios";
 
 export class GenreView extends React.Component {
   render() {
-    const { Genre, onBackClick } = this.props;
+    const { Genre, onBackClick, movies } = this.props;
 
     return (
       <Container className="genre-container">
