@@ -29,6 +29,11 @@
 .mvcard {
   margin-top: 50px;
 }
+
+.movie_img {
+  width: 100% !important;
+  height: 350px !important;
+}
 .movie-view {
   margin-top: 100px;
   margin-bottom: 50px;
@@ -36,6 +41,7 @@
 
 .alignCenter {
   text-align: center;
+  margin-top: 20px;
 }
 
 .label {
@@ -86,6 +92,15 @@
 
 .director-container {
   margin-top: 100px !important;
+}
+
+.movie-img {
+  width: 150px !important;
+  margin-left: 20px;
+}
+
+.director-movies {
+  margin-top: 20px;
 }
 .bt {
   margin-top: 20px;
