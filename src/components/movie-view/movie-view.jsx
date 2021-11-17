@@ -3,18 +3,29 @@ import PropTypes from "prop-types";
 import "./movie-view.scss";
 import { Row, Container, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export class MovieView extends React.Component {
-  keypressCallback(event) {
-    console.log(event.key);
-  }
+  addToFavs() {
+    const Username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    const movie = this.props;
 
-  componentDidMount() {
-    document.addEventListener("keypress", this.keypressCallback);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("keypress", this.keypressCallback);
+    axios
+      .post(
+        `https://movie-api-by-tammy.herokuapp.com/users/${Username}/movies/${movie._id}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        this.componentDidMount();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
@@ -39,7 +50,7 @@ export class MovieView extends React.Component {
               </div>
               <div className="movie-director">
                 <span className="label">Director: </span>
-                <Link to={`/directors/${movie.Director}`}>
+                <Link to={`/directors/${movie.Director.Name}`}>
                   <span className="value">{movie.Director.Name}</span>
                 </Link>
               </div>
@@ -49,14 +60,24 @@ export class MovieView extends React.Component {
               </div>
               <div className="movie-genre">
                 <span className="label">Genre: </span>
-                <Link to={`/genres/${movie.Genre}`}>
+                <Link to={`/genres/${movie.Genre.Name}`}>
                   <span className="value">{movie.Genre.Name}</span>
                 </Link>
               </div>
 
               <div className="alignCenter">
                 <Button
-                  size="lg"
+                  size="md"
+                  variant="warning"
+                  onClick={() => {
+                    this.addToFavs();
+                  }}
+                >
+                  Add Favorite
+                </Button>
+                <Button
+                  className="back-button"
+                  size="md"
                   variant="danger"
                   onClick={() => {
                     onBackClick(null);
