@@ -278,7 +278,7 @@ export class ProfileView extends React.Component {
                             key={movie._id}
                           >
                             <Card.Img
-                              className="poster"
+                              className="fav-poster"
                               variant="top"
                               src={movie.ImagePath}
                             />

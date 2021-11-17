@@ -144,6 +144,7 @@ export class MainView extends React.Component {
                   return (
                     <Col md={8}>
                       <MovieView
+                        movies={movies}
                         movie={movies.find(
                           (m) => m.Title === match.params.Title
                         )}
