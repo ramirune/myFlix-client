@@ -13,7 +13,8 @@ export class MovieView extends React.Component {
 
     axios
       .post(
-        `https://movie-api-by-tammy.herokuapp.com/users/${Username}/movies/${movie.MovieID}`,
+        `https://movie-api-by-tammy.herokuapp.com/users/${Username}/movies/${movie._id}`,
+        {},
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -49,7 +50,7 @@ export class MovieView extends React.Component {
               </div>
               <div className="movie-director">
                 <span className="label">Director: </span>
-                <Link to={`/directors/${movie.Director}`}>
+                <Link to={`/directors/${movie.Director.Name}`}>
                   <span className="value">{movie.Director.Name}</span>
                 </Link>
               </div>
@@ -59,14 +60,14 @@ export class MovieView extends React.Component {
               </div>
               <div className="movie-genre">
                 <span className="label">Genre: </span>
-                <Link to={`/genres/${movie.Genre}`}>
+                <Link to={`/genres/${movie.Genre.Name}`}>
                   <span className="value">{movie.Genre.Name}</span>
                 </Link>
               </div>
 
               <div className="alignCenter">
                 <Button
-                  size="lg"
+                  size="md"
                   variant="warning"
                   onClick={() => {
                     this.addToFavs();
@@ -76,7 +77,7 @@ export class MovieView extends React.Component {
                 </Button>
                 <Button
                   className="back-button"
-                  size="lg"
+                  size="md"
                   variant="danger"
                   onClick={() => {
                     onBackClick(null);
