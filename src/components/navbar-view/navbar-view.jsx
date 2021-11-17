@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 import "./navbar-view.scss";
 import logo from "../../img/myFlix_logo.png";
-import { Link } from "react-router-dom";
 
 export function NavBarView() {
   const Username = localStorage.getItem("user");
