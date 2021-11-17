@@ -19,16 +19,14 @@ export class MainView extends React.Component {
     super();
     this.state = {
       movies: [],
-      //selectedMovie: null,
+      selectedMovie: null,
       user: null,
-      Username: "",
-      Password: "",
-      Email: "",
-      Birthday: "",
+      Description: null,
+      Movies: null,
     };
   }
 
-  getUser(token) {
+  /*  getUser(token) {
     axios
       .get(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -41,7 +39,7 @@ export class MainView extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
+  } */
 
   getMovies(token) {
     axios
@@ -185,7 +183,12 @@ export class MainView extends React.Component {
                   return (
                     <Col md={8}>
                       <DirectorView
-                        Director={movies.find((m) => m.Director.Name).Director}
+                        Director={
+                          movies.find(
+                            (m) => m.Director.Name === match.params.Name
+                          ).Director
+                        }
+                        movies={movies}
                         onBackClick={() => history.goBack()}
                       />
                     </Col>
@@ -203,7 +206,11 @@ export class MainView extends React.Component {
                   return (
                     <Col md={8}>
                       <GenreView
-                        Genre={movies.find((m) => m.Genre.Name).Genre}
+                        movies={movies}
+                        Genre={
+                          movies.find((m) => m.Genre.Name === match.params.Name)
+                            .Genre
+                        }
                         onBackClick={() => history.goBack()}
                       />
                     </Col>
