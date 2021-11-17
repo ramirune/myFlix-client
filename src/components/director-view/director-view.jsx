@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card, Button, Row, Col } from "react-bootstrap";
 
 import "./director-view.scss";
 
 export class DirectorView extends React.Component {
   render() {
-    const { Director, onBackClick } = this.props;
+    const { Director, onBackClick, movies } = this.props;
 
     return (
       <Container className="director-container">
@@ -32,6 +32,29 @@ export class DirectorView extends React.Component {
               <span className="label">Death: </span>
               <span className="value">{Director.Death}</span>
             </div>
+            <Row className="director-movies text-center">
+              <Col>
+                <p>
+                  <strong>{Director.Name}'s Movies</strong>
+                </p>
+              </Col>
+            </Row>
+            <Row>
+              <Col className="img-container text-center">
+                {movies.map((m) => {
+                  if (m.Director && m.Director.Name === Director.Name) {
+                    return (
+                      <Card.Img
+                        className="movie-img"
+                        variant="top"
+                        key={m._id}
+                        src={m.ImagePath}
+                      />
+                    );
+                  }
+                })}
+              </Col>
+            </Row>
             <div className="backButton">
               <Button
                 size="md"
