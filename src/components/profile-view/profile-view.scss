@@ -10,15 +10,17 @@
 }
 
 .favorite-movie {
-  width: 250px;
+  width: 200px;
   background-color: black;
   margin: 20px;
   text-align: center;
 }
-.poster {
+.fav-poster {
   text-align: center;
   padding: 10px;
   background-color: black !important;
+  width: 100% !important;
+  height: 250px;
 }
 
 .movie_title {
