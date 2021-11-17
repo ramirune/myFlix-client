@@ -38,7 +38,7 @@ export class ProfileView extends React.Component {
     const Username = localStorage.getItem("user");
     axios
       .get(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
-        header: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         this.setState({
@@ -89,13 +89,14 @@ export class ProfileView extends React.Component {
   }
 
   // Delete a movie from FavoriteMovies list
-  onRemoveFavorite() {
+  onRemoveFavorite(movie) {
     const Username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
     axios
       .delete(
-        `https://movie-api-by-tammy.herokuapp.com/users/${Username}/movies/${movie._id}`,
+        `https://movie-api-by-tammy.herokuapp.com/users/${Username}/movies/}` +
+          movie._id,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
