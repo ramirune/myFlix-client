@@ -21,6 +21,7 @@ export class MovieView extends React.Component {
       )
       .then((response) => {
         console.log(response);
+        console.log(movie._id);
         alert("The movie is now on your list.");
         this.componentDidMount();
       })
