@@ -95,8 +95,7 @@ export class ProfileView extends React.Component {
 
     axios
       .delete(
-        `https://movie-api-by-tammy.herokuapp.com/users/${Username}/movies/}` +
-          movie._id,
+        `https://movie-api-by-tammy.herokuapp.com/users/${Username}/movies/${movie._id}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -132,19 +131,19 @@ export class ProfileView extends React.Component {
   }
 
   setUsername(value) {
-    this.Username = value;
+    this.state.Username = value;
   }
 
   setPassword(value) {
-    this.Password = value;
+    this.state.Password = value;
   }
 
   setEmail(value) {
-    this.Email = value;
+    this.state.Email = value;
   }
 
   setBirthday(value) {
-    this.Birthday = value;
+    this.state.Birthday = value;
   }
 
   render() {

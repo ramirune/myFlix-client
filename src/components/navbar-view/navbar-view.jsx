@@ -22,7 +22,7 @@ export function NavBarView() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse>
           <Nav className="me-auto navbar-menu">
-            <Link to={`/user/${Username}`}>
+            <Link to={`/users/${Username}`}>
               <NavItem style={{ color: "white" }} href="">
                 User Profile
               </NavItem>
