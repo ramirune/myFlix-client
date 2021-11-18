@@ -26,20 +26,20 @@ export class MainView extends React.Component {
     };
   }
 
-  /*  getUser(token) {
+  getUsers(token) {
     axios
-      .get(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
+      .get(`https://movie-api-by-tammy.herokuapp.com/users/`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
         this.setState({
-          user: response.data,
+          users: response.data,
         });
       })
       .catch(function (error) {
         console.log(error);
       });
-  } */
+  }
 
   getMovies(token) {
     axios
@@ -99,7 +99,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user } = this.state;
+    const { movies, user, users } = this.state;
 
     return (
       <Router>
@@ -156,8 +156,8 @@ export class MainView extends React.Component {
               />
               <Route
                 exact
-                path="/user/:Username"
-                render={({ history }) => {
+                path="/users/:Username"
+                render={({ match, history }) => {
                   if (!user)
                     return (
                       <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
@@ -167,6 +167,7 @@ export class MainView extends React.Component {
                     <ProfileView
                       history={history}
                       movies={movies}
+                      users={users}
                       user={user}
                       onBackClick={() => history.goBack()}
                     />
