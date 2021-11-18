@@ -9,7 +9,7 @@ export class MovieView extends React.Component {
   addToFavs() {
     const Username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
-    const movie = this.props;
+    const { movie } = this.props;
 
     axios
       .post(
@@ -21,11 +21,16 @@ export class MovieView extends React.Component {
       )
       .then((response) => {
         console.log(response);
+        alert("The movie is now on your list.");
         this.componentDidMount();
       })
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  componentDidMount() {
+    document.addEventListener("keypress", this.keypressCallback);
   }
 
   render() {
