@@ -34,7 +34,7 @@ export class ProfileView extends React.Component {
     window.open("/", "_self");
   }
 
-  getUser(token) {
+  getUser = (token) => {
     const Username = localStorage.getItem("user");
     axios
       .get(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
@@ -52,9 +52,9 @@ export class ProfileView extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
+  };
   // Allow user to edit or update profile
-  editUser(e) {
+  editUser = (e) => {
     e.preventDefault();
     const Username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
@@ -90,22 +90,10 @@ export class ProfileView extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
-
-  /* changeHandler(e) {
-    if (e.target.name === "Username") {
-      this.setState({ Username: e.target.value });
-    } else if (e.target.name === "Password") {
-      this.setState({ Password: e.target.value });
-    } else if (e.target.name === "Email") {
-      this.setState({ Email: e.target.value });
-    } else if (e.target.name === "Birthday") {
-      this.setState({ Birthday: e.target.value });
-    }
-  } */
+  };
 
   // Delete a movie from FavoriteMovies list
-  onRemoveFavorite(movie) {
+  onRemoveFavorite = (movie) => {
     const Username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
@@ -124,7 +112,7 @@ export class ProfileView extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
-  }
+  };
 
   // Deregister
   onDeleteUser() {
@@ -147,21 +135,33 @@ export class ProfileView extends React.Component {
       });
   }
 
-  /* setUsername(value) {
-    this.state.Username = value;
+  setUsername(value) {
+    this.setState({
+      Username: value,
+    });
+    this.Username = value;
   }
 
   setPassword(value) {
-    this.state.Password = value;
+    this.setState({
+      Password: value,
+    });
+    this.Password = value;
   }
 
   setEmail(value) {
-    this.state.Email = value;
+    this.setState({
+      Email: value,
+    });
+    this.Email = value;
   }
 
   setBirthday(value) {
-    this.state.Birthday = value;
-  } */
+    this.setState({
+      Birthday: value,
+    });
+    this.Birthday = value;
+  }
 
   render() {
     const { movies } = this.props;
