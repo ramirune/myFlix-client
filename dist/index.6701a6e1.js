@@ -41025,7 +41025,7 @@ class ProfileView extends _reactDefault.default.Component {
         });
         window.open("/", "_self");
     }
-    getUser(token) {
+    getUser = (token)=>{
         const Username = localStorage.getItem("user");
         _axiosDefault.default.get(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
             headers: {
@@ -41042,9 +41042,9 @@ class ProfileView extends _reactDefault.default.Component {
         }).catch(function(error) {
             console.log(error);
         });
-    }
+    };
     // Allow user to edit or update profile
-    editUser(e) {
+    editUser = (e)=>{
         e.preventDefault();
         const Username = localStorage.getItem("user");
         const token = localStorage.getItem("token");
@@ -41073,19 +41073,9 @@ class ProfileView extends _reactDefault.default.Component {
         }).catch(function(error) {
             console.log(error);
         });
-    }
-    /* changeHandler(e) {
-    if (e.target.name === "Username") {
-      this.setState({ Username: e.target.value });
-    } else if (e.target.name === "Password") {
-      this.setState({ Password: e.target.value });
-    } else if (e.target.name === "Email") {
-      this.setState({ Email: e.target.value });
-    } else if (e.target.name === "Birthday") {
-      this.setState({ Birthday: e.target.value });
-    }
-  } */ // Delete a movie from FavoriteMovies list
-    onRemoveFavorite(movie) {
+    };
+    // Delete a movie from FavoriteMovies list
+    onRemoveFavorite = (movie)=>{
         const Username = localStorage.getItem("user");
         const token = localStorage.getItem("token");
         _axiosDefault.default.delete(`https://movie-api-by-tammy.herokuapp.com/users/${Username}/movies/${movie._id}`, {
@@ -41099,7 +41089,7 @@ class ProfileView extends _reactDefault.default.Component {
         }).catch(function(error) {
             console.log(error);
         });
-    }
+    };
     // Deregister
     onDeleteUser() {
         const Username = localStorage.getItem("user");
@@ -41118,21 +41108,31 @@ class ProfileView extends _reactDefault.default.Component {
             console.log(error);
         });
     }
-    /* setUsername(value) {
-    this.state.Username = value;
-  }
-
-  setPassword(value) {
-    this.state.Password = value;
-  }
-
-  setEmail(value) {
-    this.state.Email = value;
-  }
-
-  setBirthday(value) {
-    this.state.Birthday = value;
-  } */ render() {
+    setUsername(value) {
+        this.setState({
+            Username: value
+        });
+        this.Username = value;
+    }
+    setPassword(value) {
+        this.setState({
+            Password: value
+        });
+        this.Password = value;
+    }
+    setEmail(value) {
+        this.setState({
+            Email: value
+        });
+        this.Email = value;
+    }
+    setBirthday(value) {
+        this.setState({
+            Birthday: value
+        });
+        this.Birthday = value;
+    }
+    render() {
         const { movies  } = this.props;
         const { FavoriteMovies , Username , Email , Birthday  } = this.state;
         return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Container, {
