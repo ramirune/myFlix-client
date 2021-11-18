@@ -60,15 +60,18 @@ export class ProfileView extends React.Component {
     const token = localStorage.getItem("token");
 
     axios
-      .put(`https://movie-api-by-tammy.herokuapp.com/users/${Username}`, {
-        headers: { Authorization: `Bearer ${token}` },
-        data: {
+      .put(
+        `https://movie-api-by-tammy.herokuapp.com/users/${Username}`,
+        {
           Username: this.state.Username,
           Password: this.state.Password,
           Email: this.state.Email,
           Birthday: this.state.Birthday,
         },
-      })
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
       .then((response) => {
         this.setState({
           Username: response.data.Username,
@@ -76,6 +79,7 @@ export class ProfileView extends React.Component {
           Email: response.data.Email,
           Birthday: response.data.Birthday,
         });
+
         localStorage.setItem("user", this.state.Username);
         const data = response.data;
         console.log(data);
@@ -87,6 +91,18 @@ export class ProfileView extends React.Component {
         console.log(error);
       });
   }
+
+  /* changeHandler(e) {
+    if (e.target.name === "Username") {
+      this.setState({ Username: e.target.value });
+    } else if (e.target.name === "Password") {
+      this.setState({ Password: e.target.value });
+    } else if (e.target.name === "Email") {
+      this.setState({ Email: e.target.value });
+    } else if (e.target.name === "Birthday") {
+      this.setState({ Birthday: e.target.value });
+    }
+  } */
 
   // Delete a movie from FavoriteMovies list
   onRemoveFavorite(movie) {
@@ -102,6 +118,7 @@ export class ProfileView extends React.Component {
       )
       .then((response) => {
         console.log(response);
+        alert("Movie was removed!");
         this.componentDidMount();
       })
       .catch(function (error) {
@@ -130,7 +147,7 @@ export class ProfileView extends React.Component {
       });
   }
 
-  setUsername(value) {
+  /* setUsername(value) {
     this.state.Username = value;
   }
 
@@ -144,7 +161,7 @@ export class ProfileView extends React.Component {
 
   setBirthday(value) {
     this.state.Birthday = value;
-  }
+  } */
 
   render() {
     const { movies } = this.props;
@@ -285,6 +302,7 @@ export class ProfileView extends React.Component {
                               <Card.Title className="movie_title">
                                 {movie.Title}
                               </Card.Title>
+
                               <Button
                                 size="sm"
                                 variant="danger"
