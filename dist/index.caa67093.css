@@ -1,40 +1,6 @@
 .my-flix {
   color: steelblue;
 }
-.movie_genre {
-  font-size: smaller;
-  font-style: italic;
-  text-align: center;
-  color: #f4ddd5;
-  margin-bottom: 10px;
-}
-
-.poster {
-  height: 520px !important;
-  text-align: center;
-  padding: 10px;
-  background-color: black !important;
-}
-
-.movie_title {
-  height: 60px;
-  text-align: center;
-  background-color: #c48f7f;
-  color: white !important;
-  padding: 10px;
-}
-
-/* .button {
-  background-color: #fdc689 !important;
-} */
-.mvcard {
-  margin-top: 50px;
-}
-
-.movie_img {
-  width: 100% !important;
-  height: 320px !important;
-}
 .movie-view {
   margin-top: 100px;
   margin-bottom: 50px;
@@ -156,5 +122,43 @@ h4 {
 .body {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+.movie_genre {
+  font-size: smaller;
+  font-style: italic;
+  text-align: center;
+  color: #f4ddd5;
+  margin-bottom: 10px;
+}
+
+.poster {
+  height: 520px !important;
+  text-align: center;
+  padding: 10px;
+  background-color: black !important;
+}
+
+.movie_title {
+  height: 3em;
+  font-size: medium !important;
+  text-align: center;
+  background-color: #c48f7f;
+  color: white !important;
+  padding: 10px;
+}
+
+/* .button {
+  background-color: #fdc689 !important;
+} */
+.mvcard {
+  margin-top: 50px;
+}
+
+.movie_img {
+  width: 100% !important;
+  height: 320px !important;
+}
+.movies-container {
+  margin-top: 100px;
 }
 /*# sourceMappingURL=index.caa67093.css.map */
