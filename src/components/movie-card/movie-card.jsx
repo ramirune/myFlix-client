@@ -6,11 +6,15 @@ import "./movie-card.scss";
 
 export class MovieCard extends React.Component {
   render() {
-    const { movie, onMovieClick } = this.props;
+    const { movie } = this.props;
 
     return (
       <div className="mvcard">
-        <Container className="moviecardContainer" style={{ display: "inline" }}>
+        <Container
+          className="moviecardContainer"
+          style={{ display: "inline" }}
+          fluid="md sm"
+        >
           <Row>
             <Col>
               <CardGroup>
