@@ -3,7 +3,10 @@ import axios from "axios";
 import PropTypes from "prop-types";
 
 import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
+
+import { setUser, updateUser } from "../../actions/actions";
+import { connect } from "react-redux";
 
 import "./profile-view.scss";
 
@@ -335,3 +338,12 @@ ProfileView.propTypes = {
     Birthday: PropTypes.string,
   }),
 };
+
+let mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    movies: state.movies,
+  };
+};
+
+export default connect(mapStateToProps, { setUser, updateUser })(ProfileView);
